@@ -24,38 +24,54 @@
   <body>
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">Quizapp</span>
+        <span class="navbar-brand mb-0 h1">Quizmaster</span>
       </div>
     </nav>
     <main class="main-container">
       <div class="main-card card">
+        <div class="card main-card start-card" id="start-card">
+          <h1 class="titel">Quizmaster</h1>
+          <p>Willkommen bei Quizmaster! Ich wünsche dir viel Spaß!!</p>
+          <label for="user">Name eingeben</label>
+          <input class="user-input" type="text" id="user">
+          <button type="button" onclick="start()" class="btn btn-primary btn-lg">START</button>
+        </div>
         <div class="card-header">
           <h2 class="logo">Quizmaster</h2>
-          <h4>
+          <h4 id="question">
             Wer von diesen allen Frauen und Männern die sich hier unten befinden
             hat HTMl erfunden?
           </h4>
         </div>
         <div class="card-body">
           <div class="card">
-            <div class="card-body">This is some text within a card body.</div>
+            <div class="card-body" id="answer-1">
+              <span class="letter-box">A</span>
+              <span>answer-1</span>
+            </div>
           </div>
           <div class="card">
-            <div class="card-body">This is some text within a card body.</div>
+            <div class="card-body" id="answer-2">
+              <span class="letter-box">B</span>
+              <span>answer-1</span></div>
           </div>
           <div class="card">
-            <div class="card-body">This is some text within a card body.</div>
+            <div class="card-body" id="answer-3">
+              <span class="letter-box">C</span>
+              <span>answer-1</span></div>
           </div>
           <div class="card">
-            <div class="card-body">This is some text within a card body.</div>
+            <div class="card-body" id="answer-4">
+              <span class="letter-box">D</span>
+              <span>answer-1</span></div>
           </div>
         </div>
         <div class="card-footer">
           <div class="questions-number">
-            <span>Frage 1</span>
+            <span id="question-number">Frage 1</span>
             <span>von 5</span>
           </div>
-          <button type="button" class="btn btn-primary btn-lg" >Next</button>
+          <button type="button" class="btn btn-primary btn-lg" id="next-button">Next</button>
         </div>
       </div>
     </main>
