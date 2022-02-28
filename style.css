@@ -1,4 +1,7 @@
-
+:root{
+    --yellow: rgb(243, 255, 70);
+    --blue:#0d6efd;
+}
 .main-container {
     background-color: rgba(18, 133, 241, 0.39);
     height: 100vh;
@@ -6,13 +9,18 @@
     justify-content: center;
     align-items: center;
 }
-.logo{
-    color: #0d6efd;;
+.blue-txt{
+    color: var(--blue);
     
 }
+.title{
+    font-size: 4rem;
+    margin-bottom: 5rem;
+}
 .main-card {
-    max-width: 60rem;
-    background-color: rgb(255, 255, 67);
+    width: 60rem;
+    height: 80vh;
+    background-color:var(--yellow);
     margin: 0 1rem;
     margin-top: -3rem;
     z-index: 1;
@@ -21,7 +29,7 @@
 
 .card {
     margin-bottom: .5rem;
-    border: 3px solid #0d6efd;;
+    border: 3px solid var(--blue)
 }
 
 .card-header {
@@ -30,7 +38,7 @@
     align-items: center;
     text-align: center;
     gap: .5rem;
-    background-color: rgb(255, 255, 67);
+    background-color: var(--yellow)
 }
 
 .card-header img {
@@ -69,7 +77,7 @@
 .start-card .titel {
     font-size: 4rem;
     margin-bottom: 5rem;
-    color: #0d6efd;;
+    color: var(--blue);
 }
 .start-card p{
     font-size: 2rem;
