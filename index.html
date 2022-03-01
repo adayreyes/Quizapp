@@ -30,18 +30,22 @@
       </div>
     </nav>
     <main class="main-container">
-      <div class="main-card card" >
-        <div class="card main-card start-card" id="start-card">
+      <div class="main-card-container main-card card" >
+        <div class="card top-card start-card" id="start-card">
           <h2 class="blue-txt title">Quizmaster</h2>
           <p>Willkommen bei <span class="blue-txt">Quizmaster</span>! Ich wünsche dir viel Spaß!!</p>
           <label for="user">Name eingeben</label>
           <input class="user-input" type="text" id="user">
           <button type="button" onclick="start()" class="btn btn-primary btn-lg">START</button>
         </div>
-        <div id="main-card">
+        <div class="questions-card" id="main-card">
           <div class="card-header"></div>
           <div class="card-body"></div>
           <div class="card-footer"></div>
+        </div>
+        <div class="card top-card end-card" id="end-card">
+          <h2 class="blue-txt title">Quizmaster</h2>
+          <p>Danke, dass du <span class="blue-txt">Quizmaster</span>benutzt hast!</p>
         </div>
       </div>
     </main>

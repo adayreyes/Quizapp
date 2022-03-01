@@ -5,7 +5,7 @@ let questions = [
         "answer_2":"Mochilo",
         "answer_3":"Balleta",
         "answer_4":"Riñonera ",
-        "correct":"3" 
+        "correct":"1" 
     },
     {
         "question":"Wie sagt man Regal auf Spanisch?",
@@ -13,7 +13,7 @@ let questions = [
         "answer_2":"Rollo",
         "answer_3":"Encimera",
         "answer_4":"Estanteria",
-        "correct":"2" 
+        "correct":"4" 
     },
     {
         "question":"Wie sagt man Spatz auf Spanisch?",
@@ -29,7 +29,7 @@ let questions = [
         "answer_2":"Agenda",
         "answer_3":"Bloqueador",
         "answer_4":"Cuaderno",
-        "correct":"2" 
+        "correct":"4" 
     },
     {
         "question":"Wie sagt man Spiegel auf Spanisch?",

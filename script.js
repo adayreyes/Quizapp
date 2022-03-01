@@ -1,13 +1,23 @@
 let i = 0;
-
+let username;
 function getById(id) {
    return document.getElementById(id);
 }
 
 function start() {
-   let start = document.getElementById("start-card");
-   start.classList.add("animation");
+   let start = getById("start-card");
+   let user = getById("user").value;
+   start.classList.add("disappear");
    setTimeout(() => {start.style.display = "none"},1500)
+   chackUserName(user);
+}
+
+function chackUserName(user){
+   if(user === ""){
+      username = "Frau/Herr ohne Namen" 
+   } else{
+      username = user
+   }
 }
 
 function render() {
@@ -33,9 +43,20 @@ function nextQuestion(){
    if(i < questions.length){
       render()
    } else{
-      alert("FINITO")
+      renderEnd();
    }
 }
+
+function renderEnd(){
+   let end = getById("end-card");
+   end.classList.add("appear");
+   addUsername(end);
+}
+
+function addUsername(end){
+   end.innerHTML += `<span>${username}</span>`
+}
+
 
 function cardHeaderTemplate(){
    return`<div class="card-header">
@@ -53,8 +74,8 @@ function cardBodyTemplate(){
 }
 
 function answer1Template(){
-   return `<div class="card">
-   <div class="card-body" id="answer-1">
+   return `<div class="card answer hover" id="answer-1"  onclick="checkAnswer(1)">
+   <div class="card-body" >
    <span class="letter-box">A</span>
       <span>${questions[i]['answer_1']}</span>
       </div>
@@ -62,8 +83,8 @@ function answer1Template(){
 }
 
 function answer2Template(){
-   return `<div class="card">
-      <div class="card-body" id="answer-2">
+   return `<div class="card answer hover" id="answer-2"  onclick="checkAnswer(2)">
+      <div class="card-body" >
       <span class="letter-box">B</span>
       <span>${questions[i]['answer_2']}</span>
       </div>
@@ -71,8 +92,8 @@ function answer2Template(){
 }
 
 function answer3Template(){
-   return `<div class="card">
-      <div class="card-body" id="answer-3">
+   return `<div class="card answer hover" id="answer-3" onclick="checkAnswer(3)">
+      <div class="card-body"  >
       <span class="letter-box">C</span>
       <span>${questions[i]['answer_3']}</span>
       </div>
@@ -80,8 +101,8 @@ function answer3Template(){
 }
 
 function answer4Template(){
-   return `<div class="card">
-      <div class="card-body" id="answer-4">
+   return `<div class="card answer hover" id="answer-4" onclick="checkAnswer(4)">
+      <div class="card-body" >
       <span class="letter-box">D</span>
       <span>${questions[i]['answer_4']}</span>
       </div>
@@ -96,4 +117,31 @@ function cardFooterTemplate(){
    </div>
    <button type="button" class="btn btn-primary btn-lg" onclick="nextQuestion()">Next</button>
  </div>`
+}
+
+
+function checkAnswer(number){
+   let answer = getById(`answer-${number}`)
+   if(number == questions[i]['correct']){
+      answer.style.backgroundColor = "green";
+      
+   } else{
+      answer.style.backgroundColor = "red";
+   }
+   showRightAnswer();
+   deleteOnClick();
+}
+
+function deleteOnClick(){
+   let answers = document.getElementsByClassName("answer");
+   for(let i = 0; i < answers.length; i++){
+      answers[i].removeAttribute("onclick");
+      answers[i].classList.remove("hover");
+      
+   }
+}
+
+function showRightAnswer(){
+   let rightAnswer = getById(`answer-${questions[i]['correct']}`);
+   rightAnswer.style.backgroundColor = "green";
 }
