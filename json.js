@@ -40,3 +40,5 @@ let questions = [
         "correct":"2" 
     }
 ]
+
+let results = [];

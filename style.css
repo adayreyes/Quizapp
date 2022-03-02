@@ -111,23 +111,54 @@
     max-width: 400px;
     margin-bottom: 2rem;
 }
-.end-card{
+.end-card, .result-card{
     display: flex;
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0%;
-    z-index: 0;
-    justify-content: center;
+    font-size: 1.5rem;
     align-items: center;
+    text-align: center;
     
 }
+.table{
+    width: 90%;
+    text-align: center;
+}
+.table thead th{
+    color: var(--blue);
+}
+.table tr:first-child{
+    font-weight: bold;
+}
+.caption-top{
+    text-align: center;
+    font-size: 2rem;
+    color: var(--blue);
+    
+}
+.result-card{
+    opacity: 0;
+    overflow: auto;
+    
+
+}
+
+.result-card .title{
+    margin-bottom: 0;
+}
+.end-card .title{
+    margin-bottom: 1rem;
+}
 .disappear{
-    animation: disappear 1.5s ease-in-out 1 forwards;
+    animation: disappear 1s ease-in-out 1 forwards;
+    
     
 }
 .appear{
-    animation: appear 1.5s ease-in-out 1 forwards;
+    animation: appear 1s ease-in-out 1 forwards;
+    
 
 }
 @keyframes disappear{

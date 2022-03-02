@@ -1,5 +1,8 @@
 let i = 0;
 let username;
+let right_answer = 0;
+
+load();
 function getById(id) {
    return document.getElementById(id);
 }
@@ -18,6 +21,10 @@ function chackUserName(user){
    } else{
       username = user
    }
+}
+
+function reload(){
+   window.location.reload()
 }
 
 function render() {
@@ -44,20 +51,62 @@ function nextQuestion(){
       render()
    } else{
       renderEnd();
+      save();
    }
 }
 
 function renderEnd(){
+   let thanks = getById("thanks");
    let end = getById("end-card");
    end.classList.add("appear");
-   addUsername(end);
+   addUsername(thanks);
+   addResult();
+   addRanking();
 }
 
-function addUsername(end){
-   end.innerHTML += `<span>${username}</span>`
+function save(){
+   let results_text = JSON.stringify(results);
+   localStorage.setItem("results",results_text)
 }
 
+function load(){
+   if(localStorage.getItem("results")){
+      let results_text = localStorage.getItem("results");
+      results = JSON.parse(results_text);
+   }
+}
 
+function addResult(){
+   results.unshift({"name":`${username}`,"result":`${right_answer}`})
+}
+
+function addUsername(thanks){
+   thanks.innerHTML += `Danke <span class="username"><b>${username}</b>,</span> dass du <span class="blue-txt">Quizmaster</span> benutzt hast!`
+}
+
+function addRanking(){
+   let table = getById("table-body");
+   for(let i = 0; i < 3; i++){
+      table.innerHTML += rankingTemplate(i);
+   }
+}
+
+function showAllResults(){
+   let result_card = getById("result-card");
+   let table = getById("all-ranking");
+   for(let i = 0; i < results.length; i++){
+      table.innerHTML += rankingTemplate(i);
+   }
+   result_card.classList.add("appear");
+
+}
+
+function rankingTemplate(i){
+   return `<tr>
+   <td>${results[i]['name']}</td>
+   <td>${results[i]['result']} von 5</td>
+ </tr>`
+}
 function cardHeaderTemplate(){
    return`<div class="card-header">
    <h2 class="blue-txt">Quizmaster</h2>
@@ -124,6 +173,7 @@ function checkAnswer(number){
    let answer = getById(`answer-${number}`)
    if(number == questions[i]['correct']){
       answer.style.backgroundColor = "green";
+      right_answer++
       
    } else{
       answer.style.backgroundColor = "red";

@@ -45,7 +45,41 @@
         </div>
         <div class="card top-card end-card" id="end-card">
           <h2 class="blue-txt title">Quizmaster</h2>
-          <p>Danke, dass du <span class="blue-txt">Quizmaster</span>benutzt hast!</p>
+          <p id="thanks"></p>
+          <table class="table">
+          <caption class="caption-top">Ranking</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Richtige Antworten</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+          </table>
+          <div class="result-buttons"> 
+            <button class="btn btn-primary btn-lg" onclick="reload()">Nochmal spielen</button>
+            <button class="btn btn-danger btn-lg" onclick="showAllResults()">Alle Ergebnisse</button>
+          </div>
+        </div>
+        <div class="card top-card  result-card" id="result-card">
+          <h2 class="blue-txt title">Quizmaster</h2>
+          <p id="thanks"></p>
+          <table class="table">
+          <caption class="caption-top">Ranking</caption>
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Richtige Antworten</th>
+              </tr>
+            </thead>
+            <tbody id="all-ranking">
+            </tbody>
+          </table>
+          <div class="result-buttons"> 
+            <button class="btn btn-primary btn-lg" onclick="reload()">Nochmal spielen</button>
+            <button class="btn btn-danger btn-lg" onclick="showAllResults()">Alle Ergebnisse</button>
+          </div>
         </div>
       </div>
     </main>
