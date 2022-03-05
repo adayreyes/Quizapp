@@ -19,8 +19,9 @@
     ></script>
 
     <link rel="stylesheet" href="./style.css" />
-    <script src="./json.js"></script>
-    <script src="./script.js"></script>
+    <script src="./js/json.js"></script>
+    <script src="./js/confetti.js"></script>
+    <script src="./js/script.js"></script>
     
   </head>
   <body onload="render()">
@@ -30,24 +31,28 @@
       </div>
     </nav>
     <main class="main-container">
+     
       <div class="main-card-container main-card card" >
         <div class="card top-card start-card" id="start-card">
           <h2 class="blue-txt title">Quizmaster</h2>
-          <p>Willkommen bei <span class="blue-txt">Quizmaster</span>! Ich wünsche dir viel Spaß!!</p>
-          <label for="user">Name eingeben</label>
+          <p>Willkommen bei <span class="blue-txt">Quizmaster</span>!<br> Ich wünsche dir viel Spaß &#128521;</p>
+          <label for="user">Name eingeben &#128394;</label>
           <input class="user-input" type="text" id="user">
           <button type="button" onclick="start()" class="btn btn-primary btn-lg">START</button>
         </div>
         <div class="questions-card" id="main-card">
-          <div class="card-header"></div>
-          <div class="card-body"></div>
-          <div class="card-footer"></div>
+          <div class="card-header" id="card-header"></div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
+          </div>
+          <div class="card-body" id="card-body"></div>
+          <div class="card-footer" id="card-footer"></div>
         </div>
         <div class="card top-card end-card" id="end-card">
           <h2 class="blue-txt title">Quizmaster</h2>
           <p id="thanks"></p>
           <table class="table">
-          <caption class="caption-top">Ranking</caption>
+          <caption class="caption-top">Verlauf</caption>
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -57,7 +62,7 @@
             <tbody id="table-body">
             </tbody>
           </table>
-          <div class="result-buttons"> 
+          <div class="end-buttons"> 
             <button class="btn btn-primary btn-lg" onclick="reload()">Nochmal spielen</button>
             <button class="btn btn-danger btn-lg" onclick="showAllResults()">Alle Ergebnisse</button>
           </div>
@@ -66,7 +71,7 @@
           <h2 class="blue-txt title">Quizmaster</h2>
           <p id="thanks"></p>
           <table class="table">
-          <caption class="caption-top">Ranking</caption>
+          <caption class="caption-top">Verlauf</caption>
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -78,7 +83,7 @@
           </table>
           <div class="result-buttons"> 
             <button class="btn btn-primary btn-lg" onclick="reload()">Nochmal spielen</button>
-            <button class="btn btn-danger btn-lg" onclick="showAllResults()">Alle Ergebnisse</button>
+            <button class="btn btn-danger btn-lg" onclick="goBack()">Zurück</button>
           </div>
         </div>
       </div>

@@ -4,7 +4,14 @@ let right_answer = 0;
 let CORRECT_SOUND = new Audio("sound/correct.mp3");
 let WRONG_SOUND = new Audio("sound/wrong.mp3");
 let FINAL_SOUND = new Audio("sound/final.mp3");
+let progress = 0;
+
 load();
+
+function reload(){
+   window.location.reload()
+}
+
 function getById(id) {
    return document.getElementById(id);
 }
@@ -22,29 +29,29 @@ function chackUserName(user){
       username = "Frau/Herr ohne Namen" 
    } else{
       username = user
+      username = username.replace(/[^a-zA-Z0-9 ]/g, '');
    }
 }
 
-function reload(){
-   window.location.reload()
-}
-
 function render() {
-   let main_card = getById("main-card");
-   main_card.innerHTML = "";
    renderQuestion();
 }
 
-function renderCard(template){
-   let element = getById("main-card");
-   element.innerHTML += template
+function renderCard(id,template){
+   let element = getById(id);
+   element.innerHTML = template
 }
 
 function renderQuestion() {
-  renderCard(cardHeaderTemplate());
-  renderCard(cardBodyTemplate());
-  renderCard(cardFooterTemplate());
-  
+  renderCard("card-header",cardHeaderTemplate());
+  renderCard("card-body",cardBodyTemplate());
+  renderCard("card-footer",cardFooterTemplate());
+}
+
+function progressBarTemplate(){
+   return ` <div class="progress">
+   <div id="progress-bar" class="progress-bar" role="progressbar" style="width: ${progress}%;" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">${progress}%</div>
+ </div>`
 }
 
 function nextQuestion(){
@@ -56,6 +63,16 @@ function nextQuestion(){
       save();
       renderEnd();
    }
+   moveProgressBar();
+}
+
+function moveProgressBar(){
+   
+   progress = Math.round(i / questions.length * 100);
+   
+   let progress_bar = getById("progress-bar");
+   progress_bar.innerHTML = `${progress}%`;
+   progress_bar.style.width = `${progress}%`
 }
 
 function renderEnd(){
@@ -63,6 +80,7 @@ function renderEnd(){
    let end = getById("end-card");
    end.classList.add("appear");
    FINAL_SOUND.play();
+   startConfetti();
    addUsername(thanks);
    addRanking();
 }
@@ -113,26 +131,24 @@ function showAllResults(){
    result_card.classList.add("appear");
 }
 
-
 function rankingTemplate(i){
    return `<tr>
    <td>${results[i]['name']}</td>
-   <td>${results[i]['result']} von 5</td>
+   <td>${results[i]['result']} von ${questions.length}</td>
  </tr>`
 }
+
 function cardHeaderTemplate(){
-   return`<div class="card-header">
+   return`
    <h2 class="blue-txt">Quizmaster</h2>
    <h4 id="question">
       ${questions[i]['question']}
-   </h4>
- </div>`
+   </h4>`
 }
 
 function cardBodyTemplate(){
-   return` <div class="card-body">
-      ${answer1Template()}${answer2Template()}${answer3Template()}${answer4Template()}
-      </div>`
+   return`
+      ${answer1Template()}${answer2Template()}${answer3Template()}${answer4Template()}`
 }
 
 function answer1Template(){
@@ -172,13 +188,12 @@ function answer4Template(){
 }
 
 function cardFooterTemplate(){
-   return`<div class="card-footer">
+   return`
    <div class="questions-number">
      <span id="question-number">Frage ${i + 1}</span>
      <span>von ${questions.length}</span>
    </div>
-   <button type="button" class="btn btn-primary btn-lg" disabled id="next(${i})">Next</button>
- </div>`
+   <button type="button" class="btn btn-primary btn-lg" disabled id="next(${i})">Next</button>`
 }
 
 
